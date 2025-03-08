@@ -1,0 +1,76 @@
+Voici ci-dessous les codes de création, des tables SQL. Vous pouvez aussi exécuter les commandes dans l'application.
+
+
+
+
+CREATE TABLE fournisseur (
+    siret VARCHAR(14) PRIMARY KEY,
+    nomsociete VARCHAR(100),
+    adresse VARCHAR(255),
+    email VARCHAR(100),
+    actif INT4 DEFAULT 1
+);
+
+
+CREATE TABLE produit (
+    idproduit NUMERIC PRIMARY KEY,
+    numlotachat NUMERIC,
+    nom VARCHAR(50),
+    description VARCHAR(255),
+    categorie VARCHAR(50),
+    prixvente FLOAT8,
+    actif INT4 DEFAULT 1,
+    seuil_min NUMERIC DEFAULT 5
+);
+
+
+CREATE TABLE contrat (
+    idcontrat NUMERIC PRIMARY KEY,
+    dated DATE,
+    datef DATE,
+    prix FLOAT8,
+    quantmin NUMERIC,
+    id_produit NUMERIC,
+    siret VARCHAR(14),
+    engageliv INT4,
+    FOREIGN KEY (id_produit) REFERENCES produit(idproduit),
+    FOREIGN KEY (siret) REFERENCES fournisseur(siret)
+);
+
+
+CREATE TABLE achat (
+    num_lot NUMERIC PRIMARY KEY,
+    quant NUMERIC,
+    dateachat DATE,
+    datelimitc DATE,
+    id_contrat NUMERIC,
+    prixunitaire FLOAT8,
+    FOREIGN KEY (id_contrat) REFERENCES contrat(idcontrat)
+);
+
+
+
+
+CREATE TABLE vente (
+    num_ticket NUMERIC,
+    num_lot NUMERIC,
+    datev DATE,
+    prixv FLOAT8,
+    quant NUMERIC,
+    PRIMARY KEY (num_ticket, num_lot),
+    FOREIGN KEY (num_lot) REFERENCES achat(num_lot)
+);
+
+
+
+CREATE TABLE contact (
+    id_contact NUMERIC PRIMARY KEY,
+    nom VARCHAR(50),
+    prenom VARCHAR(50),
+    fonction VARCHAR(50),
+    mail VARCHAR(100),
+    tel VARCHAR(20),
+    siret VARCHAR(14),
+    FOREIGN KEY (siret) REFERENCES fournisseur(siret)
+);
+

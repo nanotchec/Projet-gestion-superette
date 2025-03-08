@@ -1,0 +1,91 @@
+1/ Gestion des Fournisseurs:
+
+	-	Ajouter un fournisseur
+	-	Modifier les informations d’un fournisseur
+	-	Désactiver un fournisseur (suppression non autorisée)
+	-	Informations gérées pour chaque fournisseur :
+	-	Nom de la société
+	-	Numéro SIRET
+	-	Adresse
+	-	E-mail principal
+	-	Gestion des contacts associés :
+	-	Nom et prénom
+	-	Fonction
+	-	E-mail
+	-	Téléphone
+	-	Produits proposés par le fournisseur
+	-	Contrats avec la supérette :
+	-	Engagements de livraison (quantité minimale)
+	-	Date de début et de fin
+	-	Prix fixe pendant la durée du contrat
+
+2/ Gestion des Produits:
+
+	-	Ajouter un produit
+	-	Modifier un produit
+	-	Supprimer (désactiver) un produit
+	-	Informations gérées pour chaque produit :
+	-	Numéro unique
+	-	Numéro de lot d’achat
+	-	Nom (max 15 caractères, affiché sur le ticket de caisse)
+	-	Description détaillée
+	-	Catégorie
+	-	Prix de vente actuel (modifiable)
+
+3/ Gestion des Achats:
+
+	-	Enregistrer un lot de produits acheté
+	-	Informations gérées pour chaque achat :
+	-	Fournisseur
+	-	Produit spécifique
+	-	Quantité
+	-	Date d’achat
+	-	Date de péremption (par catégorie ou unique)
+	-	Prix unitaire (à l’unité ou au kilo)
+
+4/ Gestion des Ventes:
+
+	-	Enregistrer une vente (ticket de caisse)
+	-	Informations gérées pour chaque vente :
+	-	Produit spécifique (issu d’un lot)
+	-	Date de vente
+	-	Prix au moment de l’achat
+
+5/ Tableaux de Bord et Rapports:
+
+	-	Résultats financiers :
+	-	Total des ventes du jour et du mois
+	-	Bénéfices de la journée (prix de vente - prix d’achat)
+	-	Classement des 10 meilleures ventes (en quantité et en bénéfices)
+	-	Gestion des Commandes :
+	-	Liste des commandes à effectuer pour la journée
+	-	Options de validation ou report des commandes
+	-	Modification des quantités à commander
+	-	Choix du fournisseur parmi les options disponibles (même sans contrat)
+	-	Informations Produit :
+	-	Prix d’achat moyen (moyenne des lots achetés et non encore vendus)
+	-	Gestion des Stocks :
+	-	Liste des lots arrivant à échéance de leur date de péremption
+
+6/ Interface Utilisateur:
+
+	-	Basée sur un terminal (ligne de commande)
+	-	Commandes intuitives pour accéder aux différentes fonctionnalités
+	-	Affichage lisible des informations (tableaux, listes)
+	-	Messages d’erreur explicites et confirmations pour actions critiques
+	-	Section d’aide intégrée pour guider l’utilisateur
+
+7/ Contraintes Techniques:
+
+	-	Langage de programmation : Java
+	-	Base de données : PostgreSQL
+	-	Sécurité :
+	-	Authentification des utilisateurs
+	-	Gestion des droits d’accès selon les rôles (gérant, employé)
+
+8/ Calculs et Règles Métier:
+
+	-	Bénéfices : Prix de vente - prix d’achat du lot
+	-	Date de péremption : Définie par catégorie ou unique pour la supérette
+	-	Commandes aux fournisseurs : Autorisées si le fournisseur est dans la base, même sans contrat
+	-	Transformation des commandes en achats : Immédiate lors de la validation
